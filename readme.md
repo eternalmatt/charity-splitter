@@ -1,5 +1,4 @@
-An expermiment for me to learn AngularJS while
-designing an interactive page inspired by the
-Humble Bundle contribution divider.
+An expermiment for me to learn AngularJS. 
+Inspired by the Humble Bundle contribution divider.
 
 [http://eternalmatt.github.io/charity-splitter/](http://eternalmatt.github.io/charity-splitter/)
