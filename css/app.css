@@ -1,0 +1,6 @@
+.charity-group { 
+  display: table-row;
+}
+.charity-group > div {
+  display: table-cell;
+}
