@@ -10,15 +10,21 @@
 </head>
 <body ng-controller="CharityController">
 
+  <div>
+    <input ng-model="donation">
+  </div>
+
   <div ng-repeat="charity in charities">
 
     <div>{{charity.name}}</div>
-    <input type="range" 
-      ng-model="charity.amount"
-      min="0"
-      max="1.0"
-      step="0.01">
-    <div>{{charity.amount}}</div>
+    <div>
+      <input type="range" 
+        ng-model="charity.amount"
+        min="0"
+        max="1.0"
+        step="0.01">
+    </div>
+    <div>{{donation * charity.amount | currency }}</div>
 
   </div>
 
