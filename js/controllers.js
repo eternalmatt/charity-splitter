@@ -20,7 +20,7 @@ function CharityController($scope, $http){
     var charities = [];
     $scope.charities.forEach(function(elem){
       elem.prevAmount = elem.amount;
-      if ( elem === charity
+      if ( elem !== charity
         && (delta < 0 && elem.amount > 0)
         || (delta > 0 && elem.amount < 1)){
         charities.push(elem);
