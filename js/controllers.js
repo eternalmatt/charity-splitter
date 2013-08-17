@@ -21,12 +21,12 @@ function CharityController($scope, $http){
     $scope.charities.forEach(function(elem){
       elem.prevAmount = elem.amount;
       if ( elem !== charity
-        && (delta < 0 && elem.amount > 0)
-        || (delta > 0 && elem.amount < 1)){
+        && (delta > 0 && elem.amount > 0)
+        || (delta < 0 && elem.amount < 1)){
         charities.push(elem);
       }
     });
-    $scope.charities.forEach(function(elem){
+    charities.forEach(function(elem){
       elem.amount -= delta / charities.length;
     });
   };
