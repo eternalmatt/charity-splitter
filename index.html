@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en" ng-app="charity-splitter">
+<head>
+  <meta charset="utf-8">
+  <title>Charity Splitter</title>
+  <link rel="stylesheet" href="css/app.css">
+  <script src="lib/angular/angular.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/controllers.js"></script>
+</head>
+<body ng-controller="CharityController">
+
+  <div ng-repeat="charity in charities">
+
+    {{charity.name}}
+
+  </div>
+
+
+</body>
+</html>
