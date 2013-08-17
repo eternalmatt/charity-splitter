@@ -21,11 +21,12 @@
     <div>
       <input type="range" 
         ng-model="charity.amount"
+        ng-change="change(charity)"
         min="0"
         max="1.0"
         step="0.01">
     </div>
-    <div>{{donation * charity.amount | currency }}</div>
+    <div>{{donation * charity.amount | currency}}</div>
 
   </div>
 
