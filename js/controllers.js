@@ -10,15 +10,22 @@ function CharityController($scope, $http){
 
   $scope.change = function(charity){
     var delta = charity.amount - charity.prevAmount;
-    var length = $scope.charities.length;
-    charity.prevAmount = charity.amount;
-    
+    if (delta == 0 || delta === Infinity){ 
+      return;
+    }
+
+    var charities = [];
     $scope.charities.forEach(function(elem){
-      if (elem === charity){
-        return;
-      }
       elem.prevAmount = elem.amount;
-      elem.amount -= delta / length;
+      if ( elem === charity
+        && (delta < 0 && elem.amount > 0)
+        || (delta > 0 && elem.amount < 1)){
+        charities.push(elem);
+      }
+    });
+    $scope.charities.forEach(function(elem){
+      elem.amount -= delta / charities.length;
     });
   };
 }
+
