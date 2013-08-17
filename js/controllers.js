@@ -7,10 +7,13 @@ function CharityController($scope, $http){
       elem.prevAmount = elem.amount;
     });
   });
+  $http.get('data/strings.json').success(function(data){
+    $scope.content = data;
+  });
 
   $scope.change = function(charity){
     var delta = charity.amount - charity.prevAmount;
-    if (delta == 0 || delta === Infinity){ 
+    if (isNaN(delta) || delta == 0 || delta === Infinity){ 
       return;
     }
 

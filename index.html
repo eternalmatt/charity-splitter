@@ -10,26 +10,32 @@
 </head>
 <body ng-controller="CharityController">
 
-  <div>
-    <input ng-model="donation">
-  </div>
+  {{content[0]}}
+  <input ng-model="donation">
 
-  <div ng-repeat="charity in charities"
-    class="charity-group">
+  <div class="charity-table">
 
-    <div>{{charity.name}}</div>
-    <div>
-      <input type="range" 
-        ng-model="charity.amount"
-        ng-change="change(charity)"
-        min="0"
-        max="1.0"
-        step="0.01">
+    <div class="charity-group">
+      <div>{{content[1]}}</div>
+      <div>{{content[2]}}</div>
     </div>
-    <div>{{donation * charity.amount | currency}}</div>
 
+    <div ng-repeat="charity in charities"
+      class="charity-group">
+
+      <div>{{charity.name}}</div>
+      <div>
+        <input type="range" 
+          ng-model="charity.amount"
+          ng-change="change(charity)"
+          min="0"
+          max="1.0"
+          step="0.01">
+      </div>
+      <div>{{donation * charity.amount | currency}}</div>
+
+    </div>
   </div>
-
 
 </body>
 </html>
