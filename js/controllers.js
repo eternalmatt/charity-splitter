@@ -1,5 +1,6 @@
 function CharityController($scope, $http){
-  $http.get('json/data.json').success(function(data){
-    $scope.charities = data;
+  $http.get('data/data.json').success(function(data){
+    $scope.charities = data.charities;
+    $scope.donation = data.donation;
   });
 }
