@@ -1,10 +1,11 @@
-function CharityController($scope, $http){
+function CharityController($scope, $http, $filter){
   $http.get('data/data.json').success(function(data){
     $scope.charities = data.charities;
     $scope.donation = data.donation;
     $scope.charities.forEach(function(elem, index, array){
       elem.amount = 1 / array.length; 
       elem.prevAmount = elem.amount;
+      elem.locked = false;
     });
   });
   $http.get('data/strings.json').success(function(data){
@@ -12,23 +13,16 @@ function CharityController($scope, $http){
   });
 
   $scope.change = function(charity){
-    var delta = charity.amount - charity.prevAmount;
-    if (isNaN(delta) || delta == 0 || delta === Infinity){ 
-      return;
-    }
+    charity.locked = false;
+    delta = charity.amount - charity.prevAmount;
+    charity.prevAmount = charity.amount;
 
-    var charities = [];
-    $scope.charities.forEach(function(elem){
-      elem.prevAmount = elem.amount;
-      if ( elem !== charity
-        && (delta > 0 && elem.amount > 0)
-        || (delta < 0 && elem.amount < 1)){
-        charities.push(elem);
-      }
-    });
-    charities.forEach(function(elem){
-      elem.amount -= delta / charities.length;
-    });
+    $filter('moveable')($scope.charities, delta)
+      .forEach(function(elem, index, array){
+        if (elem != charity){
+          elem.amount -= delta / array.length;
+        }
+      });
   };
 }
 

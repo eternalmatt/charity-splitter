@@ -18,12 +18,15 @@
     <div class="charity-group">
       <div>{{content[1]}}</div>
       <div>{{content[2]}}</div>
+      <div></div>
+      <div>{{content[3]}}</div>
     </div>
 
     <div ng-repeat="charity in charities"
       class="charity-group">
 
       <div>{{charity.name}}</div>
+
       <div>
         <input type="range" 
           ng-model="charity.amount"
@@ -32,10 +35,21 @@
           max="1.0"
           step="0.01">
       </div>
-      <div>{{donation * charity.amount | currency}}</div>
+
+      <div>
+        <input value="{{donation * charity.amount | currency}}"
+          ng-disabled="charity.locked">
+      </div>
+
+      <div>
+        <input type="checkbox"
+          ng-model="charity.locked">
+      </div>
 
     </div>
   </div>
 
+  {{ charities | sum:"amount" }}
+  
 </body>
 </html>
