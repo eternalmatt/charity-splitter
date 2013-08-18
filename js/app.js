@@ -17,16 +17,19 @@ angular.module('charity-splitter',[])
       return out;
     };})
   .filter('sum',function(){
-    return function(array, field){
+    return function(array){
       var sum = 0;
       array.forEach(function(elem){
-        sum += field ? elem[field] : elem;
+        sum += Number(elem);
       });
       return sum;
     };})
-
-
-
-
-
+  .filter('map',function(){
+    return function(array,func){
+      var args = Array.prototype.slice.call(arguments);
+      args = args.splice(2,args.length);
+      return array.map(function(element){
+        return func(element, args);
+      });
+    };})
 

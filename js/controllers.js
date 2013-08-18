@@ -24,5 +24,8 @@ function CharityController($scope, $http, $filter){
         }
       });
   };
+  $scope.match = function(object, field){
+    return object[field];
+  };
 }
 

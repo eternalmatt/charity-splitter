@@ -49,7 +49,9 @@
     </div>
   </div>
 
-  {{ charities | sum:"amount" }}
-  
+  <div>
+    <span>{{content[4]}}</span>
+    <span>{{ (charities | map:match:"amount" | sum) * donation}}</span>
+  </div>
 </body>
 </html>
